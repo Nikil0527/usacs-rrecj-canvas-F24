@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.controls label,
+.controls button {
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.controls label input[type='color'] {
+  margin-left: 10px;
+  border: none;
+  padding: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls label input[type='range'] {
+  width: 150px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+button {
+  background-color: #ff5f5f;
+  border: 2px solid black; /* Black border */
+  padding: 10px 20px;
+  color: rgb(131, 131, 131);
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #f18585;
+  color: rgb(255, 255, 255);
+}
+
+.canvas {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: crosshair;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls label,
+  .controls button {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .controls label input[type='range'] {
+    width: 100%;
+  }
+}
