@@ -18,7 +18,7 @@ const App = () => {
     ctx.strokeStyle = color;
     ctx.lineWidth = brushSize;
     ctxRef.current = ctx;
-  }, []);
+  }, [color, brushSize]);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
@@ -40,20 +40,29 @@ const App = () => {
   };
 
   const handleColorChange = (e) => {
-    // TODO: SET THE STATE OF THE COLOR TO THE VALUE OF PARAMETER 'e'
     ctxRef.current.strokeStyle = e.target.value;
+    setColor(e.target.value);
   };
 
   const handleBrushSizeChange = (e) => {
-    // TODO: SET THE STATE OF THE BRUSH SIZE TO THE VALUE OF PARAMETER 'e'
     ctxRef.current.lineWidth = e.target.value;
+    setBrushSize(e.target.value);
   };
 
   const setEraser = () => {
-    // TODO: Implement setEraser()
+    const canvas = canvasRef.current;
+    const ctx = ctxRef.current;
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears the entire canvas
   };
 
-  const exportCanvas = () => {};
+  const exportCanvas = () => {
+    const canvas = canvasRef.current;
+    const image = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'canvas-drawing.png';
+    link.click();
+  };
 
   return (
     <div className="App">
@@ -73,6 +82,7 @@ const App = () => {
           />
         </label>
         <button onClick={setEraser}>Erase</button>
+        <button onClick={exportCanvas}>Export</button>
       </div>
       <canvas
         ref={canvasRef}
@@ -82,9 +92,6 @@ const App = () => {
         onMouseLeave={finishDrawing}
         className="canvas"
       />
-
-      {/* TODO: EXPORT BUTTON */}
-      {/* Remember to use the onClick attribute for buttons to execute a function... */}
     </div>
   );
 };
